@@ -15,8 +15,8 @@ function run() {
         if (status === 'OK') {
             result = alg(response);
         } else {
-            alert(failStr);
             result = failStr;
+            alert(failStr);
         }
     });
     res.textContent = "Max cost to carpool: "+result;
@@ -50,7 +50,7 @@ function nearestDay() {
     const d = parseInt(day.value);
     const date = new Date();
     const dayDif = d-date.getDay();
-    date.setDate(date.getDate()+dayDif);
+    date.setDate(date.getDate()+dayDif%7);
     return date;
 }
 
