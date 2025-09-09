@@ -8,7 +8,7 @@ function initMap() {
 }
 
 function run() {
-    const res = document.getElementById(result);
+    const res = document.getElementById("result");
     const route = buildRoute();
     let result;
     directionsService.route(route, (response, status) => {
@@ -51,6 +51,7 @@ function nearestDay() {
     const date = new Date();
     const dayDif = d-date.getDay();
     date.setDate(date.getDate()+dayDif);
+    return date;
 }
 
 function init() {
