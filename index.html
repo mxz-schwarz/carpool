@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            html {
+                text-align: center;
+                background: rgb(9, 250, 9);
+            }
+        </style>
+    </head>
+
+    <body>
+        <input id="start" type="text" value="Start location"> <br> <br>
+
+        <input id="end" type="text" value="Destination"> <br> <br>
+
+        <select id="day"></select>
+        <select id="hrs"></select>
+        :
+        <select id="mins"></select>
+        <select id="a/p">
+            <option value=0>AM</option>
+            <option value=12>PM</option>
+        </select> 
+        <br> <br>
+
+        <button id="go">GO!</button>
+
+        <h2 id="result">Max cost to carpool: press go to find out</h2>
+
+        <script src="alg.js"></script>
+        <script src="script.js"></script>
+        <script async defer 
+            src="https://maps.googleapis.com/maps/api/js?key=1048122343702&libraries=places&callback=initMap">
+        </script>
+    </body>
+</html>
