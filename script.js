@@ -18,8 +18,8 @@ function run() {
             result = failStr;
             alert(failStr);
         }
+        res.textContent = "Max cost to carpool: "+result;
     });
-    res.textContent = "Max cost to carpool: "+result;
 }
 
 function buildRoute() {
@@ -62,6 +62,7 @@ function init() {
 
 function setupDays() {
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const day = document.getElementById("day");
     for (const d of days) {
         const option = document.createElement("option");
         option.innerText = d;
