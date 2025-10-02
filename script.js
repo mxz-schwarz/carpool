@@ -23,15 +23,12 @@ function run() {
 }
 
 function buildRoute() {
-    const start = document.getElementById("start");
-    const end = document.getElementById("end");
     const route = {};
-    route.origin = start.value;
-    route.destination = end.value;
+    route.origin = document.getElementById("start").value;
+    route.destination = document.getElementById("end").value;
     route.travelMode = google.maps.TravelMode.DRIVING;
-    const dOptions = {};
-    route.drivingOptions = dOptions;
-    dOptions.departureTime = getTime();
+    route.drivingOptions = {departureTime : getTime()};
+    route.routingPreference = TRAFFIC_AWARE_OPTIMAL;
     return route;
 }
 
@@ -40,17 +37,20 @@ function getTime() {
     const hrs = document.getElementById("hrs");
     const mins = document.getElementById("mins");
     const date = nearestDay();
-    date.setHours(parseInt(hrs.value)-1+parseInt(amPM.value));
+
+    //amPM.value stores 0 for AM and 12 for PM.
+    //note that this is not the same as the text.
+    date.setHours(parseInt(hrs.value)+parseInt(amPM.value));
+    
     date.setMinutes(parseInt(mins.value));
+    
     return date;
 }
 
 function nearestDay() {
-    const day = document.getElementById("day");
-    const d = parseInt(day.value);
+    const d = parseInt(document.getElementById("day").value);
     const date = new Date();
-    const dayDif = d-date.getDay();
-    date.setDate(date.getDate()+dayDif%7);
+    date.setDate(date.getDate()+(7+d-date.getDay())%7);
     return date;
 }
 
