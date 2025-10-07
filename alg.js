@@ -1,19 +1,39 @@
 function alg(route) {
-    // conversion factor for units
+    //for debugging purposes, mostly
+    console.log(route);
+
+    //custom number formatter
+    const format = n => "$"+Math.trunc(n*100)/100;
+
+    // conversion factor for meters and miles
     const mToMi = 1609;
 
     // dollars/mile
     const costPerMile = .7;
 
-    // dollars/hour
-    const minimumWage =  15;
+    // in dollars/min (same as $15/hr) 
+    const minimumWage =  .25;
 
-    //for debugging purposes, mostly
-    console.log(route);
+    /*
+    * 0 will be replaced with
+    * something sensible later
+    * I'm assuming that delay
+    * will be in minutes.
+    */
+   
+    // delay refers to the delay 
+    // relative to the normal time
+    // (i.e. when there's no traffic)
+    const delay = 0;
 
     // this is being converted from meters
-    const distance = route.routes[0].legs[0].distance.value/mToMi
+    const distance = route.routes[0].legs[0].distance.value/mToMi;
 
+    const drivingCost = costPerMile*distance;
+
+    const timeDelayCost = delay*minimumWage;
     
-    return "$"+Math.trunc(costPerMile*distance*100)/100;
+    const totalCost = drivingCost + timeDelayCost;
+
+    return format(totalCost);
 }
