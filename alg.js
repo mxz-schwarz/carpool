@@ -19,7 +19,7 @@ function alg(route) {
     
     // delay is originally in seconds
     // it's being converted into hours
-    const delay = (path.duration.value-path.duration_in_traffic.value)/3600;
+    const delay = (path.duration_in_traffic.value-path.duration.value)/3600;
 
     // this is being converted from meters
     const distance = path.distance.value/mToMi;
