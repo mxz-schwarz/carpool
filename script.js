@@ -47,9 +47,7 @@ function getTime() {
 
     const d = parseInt(document.getElementById('day').value);
     const date = new Date();
-    // setDate and getDate aren't being used because 
-    // they don't behave very nicely when the month changes.
-    date.setTime(date.getTime() + (d - date.getDay())*24*60*60*1000 );
+    date.setDate(date.getDate() + (d - date.getDay()) );
 
     // amPM.value stores 0 for AM and 12 for PM.
     // note that this is not the same as the text.
@@ -57,8 +55,8 @@ function getTime() {
     date.setMinutes(parseInt(mins.value));
 
     if (date.getTime()<Date.now())
-        date.setTime(date.getTime()+7*24*60*60*1000);
-    
+        date.setDate(date.getDate()+7);
+
     return date;
 }
 
