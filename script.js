@@ -35,7 +35,7 @@ function buildRoute() {
 
     // useNow is being reassigned for the next request
     useNow = false;
-    
+
     return route;
 }
 
@@ -43,21 +43,19 @@ function getTime() {
     const amPM = document.getElementById('a/p');
     const hrs = document.getElementById('hrs');
     const mins = document.getElementById('mins');
-    const date = nearestDay();
+
+    const d = parseInt(document.getElementById('day').value);
+    const date = new Date();
+    date.setTime(date.getTime() + (d - date.getDay())*24*60*60*1000 );
 
     //amPM.value stores 0 for AM and 12 for PM.
     //note that this is not the same as the text.
     date.setHours(parseInt(hrs.value)+parseInt(amPM.value));
-    
     date.setMinutes(parseInt(mins.value));
-    
-    return date;
-}
 
-function nearestDay() {
-    const d = parseInt(document.getElementById('day').value);
-    const date = new Date();
-    date.setDate(date.getDate()+(7+d-date.getDay())%7);
+    if (date.getTime()<Date.now())
+        date.setTime(date.getTime()+7*24*60*60*1000);
+    
     return date;
 }
 
