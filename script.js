@@ -1,5 +1,6 @@
 window.addEventListener('load',init);
 document.getElementById('go').addEventListener('click',run);
+document.getElementById('useNow').addEventListener('click',()=>{useNow=true});
 const failStr = 'Google Maps API request failed. Please try again later.';
 let directionsService;
 let useNow = false;
@@ -46,10 +47,12 @@ function getTime() {
 
     const d = parseInt(document.getElementById('day').value);
     const date = new Date();
+    // setDate and getDate aren't being used because 
+    // they don't behave very nicely when the month changes.
     date.setTime(date.getTime() + (d - date.getDay())*24*60*60*1000 );
 
-    //amPM.value stores 0 for AM and 12 for PM.
-    //note that this is not the same as the text.
+    // amPM.value stores 0 for AM and 12 for PM.
+    // note that this is not the same as the text.
     date.setHours(parseInt(hrs.value)+parseInt(amPM.value));
     date.setMinutes(parseInt(mins.value));
 
@@ -66,7 +69,7 @@ function init() {
 }
 
 function setupDays() {
-    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const day = document.getElementById('day');
     for (const d of days) {
         const option = document.createElement('option');
