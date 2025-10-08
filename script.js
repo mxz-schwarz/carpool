@@ -27,15 +27,10 @@ function buildRoute() {
     route.origin = document.getElementById("start").value;
     route.destination = document.getElementById("end").value;
     route.travelMode = google.maps.TravelMode.DRIVING;
-    route.drivingOptions = {departureTime : getTime()};
-
-    //not sure how to add this line
-    //this key might be for a different
-    //google maps related API.
-    //I want to avoid using two API
-    //calls per request, so I'll try to use 
-
-    //route.routingPreference = TRAFFIC_AWARE_OPTIMAL;
+    route.drivingOptions = {
+        departureTime : getTime(),
+        trafficModel : google.maps.TrafficModel.BEST_GUESS
+    };
     return route;
 }
 
