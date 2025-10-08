@@ -1,9 +1,9 @@
 window.addEventListener('load',init);
 document.getElementById('go').addEventListener('click',run);
-document.getElementById('useNow').addEventListener('click',()=>{useNow=true});
 const failStr = 'Google Maps API request failed. Please try again later.';
+const useNow = document.getElementById('useNowBox');
+document.getElementById('useNow').addEventListener('click',()=>{useNow.checked=!useNow.checked});
 let directionsService;
-let useNow = false;
 
 function initMap() {
     directionsService = new google.maps.DirectionsService();
@@ -30,12 +30,9 @@ function buildRoute() {
     route.destination = document.getElementById('end').value;
     route.travelMode = google.maps.TravelMode.DRIVING;
     route.drivingOptions = {
-        departureTime : useNow ? new Date() : getTime(),
+        departureTime : useNowBox.checked ? new Date() : getTime(),
         trafficModel : google.maps.TrafficModel.BEST_GUESS
     };
-
-    // useNow is being reassigned for the next request
-    useNow = false;
 
     return route;
 }
